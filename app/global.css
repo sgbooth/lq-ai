@@ -1,0 +1,46 @@
+/* Global defaults adapted from IPbasis/pages/index.css.
+   Mantine owns component typography, colors, controls and layout. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Keep document scrolling available on small screens and long pages. */
+#root {
+  min-height: 100dvh;
+  isolation: isolate;
+}
+
+img,
+picture,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
