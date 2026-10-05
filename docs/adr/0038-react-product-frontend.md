@@ -326,6 +326,19 @@ been found and fixed by people who specialize in this. When we build the same
 controls ourselves, we repeat that work with a smaller team and less UI experience,
 and we then own the bugs.
 
+We chose [Mantine](https://mantine.dev/core/package/) over shadcn/ui with Tailwind
+because Mantine provides complete controls that cover LQ.AI's standard interface
+needs. We configure their appearance through the theme and compose them into
+workflows, rather than extending their internal implementation.
+[shadcn/ui](https://ui.shadcn.com/docs) supplies component source code for the
+application to own and modify. Combined with Tailwind, that is a useful approach
+for a bespoke interface that needs extensive control over individual components.
+LQ.AI needs consistent forms, tables, menus and dialogs; owning more of their
+implementation adds maintenance work without a corresponding product benefit.
+Mantine's maintainers develop and improve those controls across many applications.
+Reusing that work gives us a stronger foundation than rebuilding standard controls
+ourselves and keeps the code LQ.AI owns focused on legal workflows.
+
 In practice:
 
 - Use a Mantine component wherever one exists. Don't write a custom version.
