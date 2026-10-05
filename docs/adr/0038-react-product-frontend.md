@@ -19,6 +19,12 @@ Svelte version in `web/src/lib/lq-ai` and `web/src/routes/lq-ai`. OpenWebUI itse
 is untouched. The rebuild uses Mantine (a ready-made set of buttons, forms, menus
 and dialogs), Jotai (state), Wouter (page routing) and Vite (build).
 
+The completed migration has a firm framework boundary: **Svelte is used only by
+OpenWebUI. All LQ.AI product pages, components, state and workflows live in React.**
+LQ.AI does not use OpenWebUI's Svelte components, stores, routing or runtime. The
+existing Svelte LQ.AI shell remains during review and rollback validation; it is
+retired at cutover. OpenWebUI continues to run in Svelte after that cutover.
+
 The reasons, most important first:
 
 1. **Semantic architecture.** The code is organized by responsibility, with
@@ -353,8 +359,11 @@ Office.js.
    hand-written CSS limited to a few global defaults.
 3. **Don't change the backend.** Same API, same backend-owned login. The frontend's
    route guards are a convenience; the backend still enforces access.
-4. **Keep OpenWebUI separate.** No React in `web/`, no Svelte imports in `app/`.
-   The standalone Learn HTML pages can be served by both.
+4. **Limit Svelte to OpenWebUI after cutover.** All LQ.AI product UI is React in
+   `app/`. Retire `web/src/lib/lq-ai` and `web/src/routes/lq-ai` as part of that
+   cutover. LQ.AI has no dependency on Svelte components, stores or runtime; React
+   stays out of the OpenWebUI fork. The standalone Learn HTML documents are static
+   assets and introduce no Svelte runtime dependency.
 5. **Switching the default is the admin team's call.** The `app/` work on this
    branch demonstrates that the rebuild is feasible. Before the default changes
    there must be user documentation and a way back, and legacy `/lq-ai/*` links must
@@ -464,7 +473,8 @@ Costs:
 
 - reviewing the rebuild and building the remaining gaps;
 - contributors may need to rely on AI models to understand React syntax;
-- two frontends exist until the switch;
+- the Svelte and React LQ.AI implementations coexist during migration; OpenWebUI
+  keeps its separate Svelte frontend after cutover;
 - we depend on Mantine's releases, including breaking changes between major
   versions. Mantine's releases are remarkably stable and also generally
   include a skill file to migrate their components.

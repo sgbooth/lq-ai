@@ -2,6 +2,15 @@
 
 The 48 routed pages of the canonical LQ.AI shell have React implementations in `app/`. The inherited OpenWebUI shell remains separate in `web/`, consistent with ADR 0009. This does not port or remove OpenWebUI’s upstream chat/admin/workspace screens.
 
+## Framework boundary
+
+After cutover, Svelte is limited to OpenWebUI. All LQ.AI product pages, components,
+state and workflows use React in `app/`, with no dependency on Svelte components,
+stores, routing or runtime. Retiring `web/src/lib/lq-ai` and
+`web/src/routes/lq-ai` is part of completing the migration. Their current presence
+supports review and rollback validation. OpenWebUI remains in Svelte after the
+LQ.AI cutover; the shared Learn HTML documents are static assets.
+
 ## Refactoring
 
 - Shared page chrome, resource/action feedback, confirmations, pagination, chat/message rendering, skill inputs and sandbox trials, Markdown, evidence and playbook editing use Mantine compositions.
