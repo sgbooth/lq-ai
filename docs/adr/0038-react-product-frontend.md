@@ -11,8 +11,17 @@ inside the SvelteKit app. Its separation from OpenWebUI stays.
 
 ## What this proposes
 
-LQ.AI is a desktop web app. It is not used on phones or tablets, so mobile layout,
-render speed and download size are not criteria in this decision.
+Svelte and React are tools developers use to build the pages, forms and controls
+of a website or web app. Both run in the user's web browser. Developers choose
+Svelte in part to keep the amount of code the browser downloads small and reduce
+the work needed to display a page. Those benefits are useful on slower devices
+and connections, including phones accessing public websites.
+
+LQ.AI is designed for lawyers working in a desktop browser. For this use, Svelte's
+smaller downloads and faster page display do not provide a strong advantage over
+React. The more important concerns are whether the interface is consistent,
+whether developers can find and change the right code, and how much code the team
+must maintain.
 
 Rebuild the LQ.AI user interface in React, in the `app/` folder, and retire the
 Svelte version in `web/src/lib/lq-ai` and `web/src/routes/lq-ai`. OpenWebUI itself
@@ -55,8 +64,9 @@ The reasons, most important first:
    OpenWebUI. Svelte lets each component carry its own styling, and in our front end
    that produced 12,533 lines of scattered CSS. Staying on Svelte would cost us
    reasons 1 to 5 and the match with the Word add-in, and we can't point to anything
-   it would give us in return. Svelte's usual advantages, fast rendering and small
-   downloads, don't matter for a desktop app.
+   it would give us in return. For this desktop web app, Svelte's smaller downloads
+   and faster page display do not outweigh the maintenance and consistency benefits
+   described above.
 
 We are not claiming React is better than Svelte in general. The case rests on two
 facts: the product no longer needs to match OpenWebUI, and the evidence below.
