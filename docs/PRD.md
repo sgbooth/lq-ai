@@ -290,6 +290,14 @@ Both modes use the same images. The difference is which `--profile` flag is pass
 
 ## 3. Capability Specifications
 
+**Frontend migration proposal.** [ADR 0038](adr/0038-react-product-frontend.md)
+proposes an independent React/Mantine product frontend in `app/`. It is available
+for review through the opt-in Compose `react` profile, alongside the existing
+Svelte frontend. The capability and backend API contracts below remain the
+reference. [The migration register](../app/MIGRATION.md) records route coverage,
+remaining behavior gaps and the acceptance checks required before changing the
+default frontend. This proposal is pending maintainer review and acceptance.
+
 This section specifies each major capability. Every capability section follows the same structure:
 - **Description** — what the capability does.
 - **User stories** — how users invoke it.
